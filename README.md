@@ -15,7 +15,7 @@ Api接口服务器，包含注册、登录、发布动态等功能。
 1. 克隆项目
 
 ```
-$ git clone https://gitee.com/yu-yuyu11/paper.git
+$ git clone https://github.com/inkicchj/paper.git
 ```
 2.  安装依赖
 
