@@ -29,7 +29,7 @@ const postHandler = require("../router_handler/post")
 
 // 导入表单自动验证模块与验证规则模块
 const expressJoi = require("@escook/express-joi")
-const { addPost_schema, deletePostById_schema, getPostById_schema, updatePost_schema, getPostByPage_schema } = require("../schemas/post")
+const { addPost_schema, deletePostById_schema, getPostById_schema, updatePost_schema, getPostByPage_schema, sumbycate_schema } = require("../schemas/post")
 
 // 新增动态, 通过 multer 读取 formdata 数据，并将 cover_img 的图像文件挂载到 req.file
 postRouter.post('/add_post', upload.single("post_cover") ,expressJoi(addPost_schema), postHandler.addPost)
@@ -51,6 +51,15 @@ postRouter.post('/update_post', upload.single("post_cover"), expressJoi(updatePo
 
 // 根据用户 id 获取用户动态列表
 postRouter.post('/user_posts', expressJoi(getPostByPage_schema), postHandler.getArticleByUser)
+
+// 获取所有动态数量
+postRouter.post('/sum', postHandler.postSum)
+
+// 根据分类id获取动态数量
+postRouter.post("/sumbycate", expressJoi(sumbycate_schema), postHandler.postSumbyCate)
+
+// 根据用户 id 获取动态数量
+postRouter.post("/sumbyuser", postHandler.postSumbyUser)
 
 // 导出路由
 module.exports = postRouter

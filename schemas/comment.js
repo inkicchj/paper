@@ -37,3 +37,10 @@ exports.userPage_schema = {
         pageNum
     }
 }
+
+// 根据动态id获留言数量
+exports.sumbypost_schema = {
+    body: {
+        post_id:comment_id
+    }
+}

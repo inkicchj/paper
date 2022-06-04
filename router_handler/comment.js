@@ -102,3 +102,31 @@ exports.deleteCommentById = (req, res) => {
         })
     })
 }
+
+// 根据动态id获取留言数量
+exports.comSumbyPost = (req, res) => {
+    const sql = 'select count(*) as comsumbypost from ev_comments where post_id = ? and comment_is_delete = 0'
+    db.query(sql, req.body.post_id, (err, result) => {
+        if (err) return res.cc(err)
+        if (result.length === 0) return res.cc("获取留言数量失败")
+        res.send({
+            status: 1,
+            message: "获取留言数量成功",
+            data: result[0]
+        })
+    })
+}
+
+// 根据用户id获取留言数量
+exports.comSumbyUser = (req, res) => {
+    const sql = 'select count(*) as comsumbyuser from ev_comments where user_id = ? and comment_is_delete = 0'
+    db.query(sql, req.auth.user_id, (err, result) => {
+        if (err) return res.cc(err)
+        if (result.length === 0) return res.cc("获取留言数量失败")
+        res.send({
+            status: 1,
+            message: "获取留言数量成功",
+            data: result[0]
+        })
+    })
+}

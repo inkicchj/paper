@@ -197,3 +197,45 @@ exports.getArticleByUser = (req, res) => {
         })
     })
 }
+
+// 获取所有动态数量
+exports.postSum = (req, res) => {
+    const sql = 'select count(*) as postsum from ev_posts where post_is_delete = 0'
+    db.query(sql, (err, result) => {
+        if (err) return res.cc(err)
+        if (result.length === 0) return res.cc("获取动态数量失败")
+        res.send({
+            status: 1,
+            message: "获取动态数量成功",
+            data: result[0]
+        })
+    })
+}
+
+// 根据分类 id 获取动态数量
+exports.postSumbyCate = (req, res) => {
+    const sql = 'select count(*) as postsumbycate from ev_posts where cate_id = ? and post_is_delete = 0'
+    db.query(sql, req.body.cate_id, (err, result) => {
+        if (err) return res.cc(err)
+        if (result.length === 0) return res.cc("获取动态数量失败")
+        res.send({
+            status: 1,
+            message: "获取动态数量成功",
+            data: result[0]
+        })
+    })
+}
+
+// 根据用户 id 获取动态数量
+exports.postSumbyUser = (req, res) => {
+    const sql = 'select count(*) as postsumbyuser from ev_posts where user_id = ? and post_is_delete = 0'
+    db.query(sql, req.auth.user_id, (err, result) => {
+        if (err) return res.cc(err)
+        if (result.length === 0) return res.cc("获取动态数量失败")
+        res.send({
+            status: 1,
+            message: "获取动态数量成功",
+            data: result[0]
+        })
+    })
+}

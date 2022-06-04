@@ -5,7 +5,7 @@ const commentHandler = require("../router_handler/comment")
 
 // 导入表单校验模块
 const expressJoi = require("@escook/express-joi")
-const { addComment_schema, deleteCommentById_schema, page_schema, userPage_schema } = require("../schemas/comment")
+const { addComment_schema, deleteCommentById_schema, page_schema, userPage_schema, sumbypost_schema } = require("../schemas/comment")
 
 const commentRouter = express.Router()
 
@@ -20,6 +20,12 @@ commentRouter.post('/delete_comment', expressJoi(deleteCommentById_schema), comm
 
 // 根据用户 id 获取留言列表
 commentRouter.post('/user_comments', expressJoi(userPage_schema), commentHandler.getCommentListByUser)
+
+// 根据动态 id 获取留言数量
+commentRouter.post("/sumbypost", commentHandler.comSumbyPost)
+
+// 根据用户 id 获取留言数量
+commentRouter.post("/sumbyuser", expressJoi(sumbypost_schema), commentHandler.comSumbyUser)
 
 // 导出路由
 module.exports = commentRouter

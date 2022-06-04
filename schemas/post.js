@@ -52,3 +52,10 @@ exports.updatePost_schema = {
         post_state
     }
 }
+
+// 根据分类id获取动态数量
+exports.sumbycate_schema = {
+    body: {
+        cate_id: fk_cate_id
+    }
+}
