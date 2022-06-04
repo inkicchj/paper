@@ -33,7 +33,7 @@ $ npm install
 | SERVER_HOST | 服务器host地址 |
 | SERVER_PORT | 服务器端口 |
 | JWT_SECRET_KEY |token身份令牌加密密钥 |
-| JWT_EXPIRES | token身份令牌过期时间，”s“表示秒，”m“表示分，”h“表示时，”d“表示天... |
+| JWT_EXPIRES | token身份令牌过期时间 |
 | DATA_HOST | 数据库host地址 |
 | DATA_PORT | 数据库端口 |
 | DATA_NAME | 数据库名 |
